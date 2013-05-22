@@ -1,0 +1,90 @@
+@color: #ff0000;
+@pad: 5px;
+@layout-color: gray;
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: @color;
+}
+
+div {
+	border: 1px solid @layout-color;
+}
+
+.main {
+	left:0;
+	top:0;
+	right:0;
+	bottom: 0;
+	position: absolute;
+	background: #eee;
+
+	header {
+		position: absolute;
+
+		left: @pad;
+		right: @pad;
+		top: @pad;
+		height: 100px;
+	}
+
+	.log {
+		position: absolute;
+
+		top: @pad + @pad + 100;
+		bottom: @pad + @pad + @pad + @pad + 14 + 100;
+
+		left: @pad;
+		right: @pad;
+		overflow-y: auto;
+
+		dt {
+			font-weight: bold;
+		}
+		dd {
+			padding-left: 32px;
+
+			.en{
+				.text {
+					color: orange;
+				}
+			}
+			.ja{
+				.text {
+					color: purple;
+				}
+			}
+		}
+
+	}
+
+	form {
+		background: #f00;
+		.input-name {
+			position: absolute;
+			left: @pad;
+			bottom: @pad+@pad+100;
+
+			input {
+				width: 300px;
+			}
+		}
+		textarea {
+			padding: 0;
+			margin: 0;
+			position: absolute;
+			height: 100px;
+			left: @pad;
+			right: @pad;
+			bottom: @pad;
+		}
+	}
+}
