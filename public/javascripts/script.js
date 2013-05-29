@@ -33,15 +33,26 @@ var Talks = function(selector){
 
 	this.translator = new Translator();
 }
-Talks.prototype.add = function(name, en){
+Talks.prototype.add = function(name, en, ja){
+	var self = this;
 	// [todo] validate name and text
-	this.translator.en2ja(en, function(ja){
+	var add_ = function(name, en, ja) {
 		var html_ = new Talk(name, en, ja).render();
-		this.jqobj.find("dl").append(html_);
-		var scrollHeight_ = this.jqobj[0].scrollHeight;
+		self.jqobj.find("dl").append(html_);
+		var scrollHeight_ = self.jqobj[0].scrollHeight;
 
-		this.jqobj[0].scrollTop = scrollHeight_;
-	}.bind(this));
+		self.jqobj[0].scrollTop = scrollHeight_;
+	};
+	console.log(en)
+
+	if(!!ja) {
+		add_(name, en, ja)
+	} else {
+		this.translator.en2ja(en, function(res){
+			add_(name, en, res)
+			$(self).trigger('translated', [name, en, res])
+		});
+	}
 }
 
 
@@ -68,7 +79,8 @@ Talk.prototype.render = function(){
 
 // main
 
-var talks = new Talks(".log");
+var talks = new Talks(".log")
+	, socket = io.connect("http://"+location.host)
 
 $(".main form textarea")
 	.on("keydown", function(ev){
@@ -80,4 +92,12 @@ $(".main form textarea")
 			ev.preventDefault();
 		}
 	})
+
+$(talks).on("translated", function(e, name, en, ja){
+	socket.emit('talk', {name: name, en: en, ja: ja})
+})
+
+socket.on('talk', function(data){
+	talks.add(data.name, data.en, data.ja)
+})
 
