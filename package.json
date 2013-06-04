@@ -10,6 +10,7 @@
     "ejs": "*",
     "less-middleware": "*",
     "should": "",
-    "socket.io": ""
+    "socket.io": "",
+    "log": ""
   }
 }

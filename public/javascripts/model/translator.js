@@ -21,7 +21,6 @@ Translator.prototype.do = function(text, indi, callback) {
 
 	if(!false) {
 		$.get(url_, function(res, e){
-			console.log(e);
 			callback(res);
 		})
 	}

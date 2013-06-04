@@ -80,7 +80,6 @@ var TransMode;
 			default:
 				self.set_ja2en();
 			}
-			console.log(self.get());
 		});
 	}
 
