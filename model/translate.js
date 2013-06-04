@@ -7,7 +7,7 @@ var Translate
 
 
 Translate = function(apikey){
-	this.apikey = apikey || "AIzaSyDh1c1seR6aPY8eID6LYkWsbeykSZA--J8";
+	this.apikey = "error" || apikey || "AIzaSyDh1c1seR6aPY8eID6LYkWsbeykSZA--J8";
 	this.url = [
 		"https://www.googleapis.com/language/translate/v2?key=",
 		this.apikey,
@@ -47,10 +47,16 @@ Translate.prototype.get_ = function(q, s, t, callback, errorCallback) {
 	https.get(url.parse(url_), function(res){
 		res.on('data', function(d){
 			var res_ = JSON.parse(d);
-			if(typeof(callback) === "function") {
-				callback(res_)
+
+			if(res_ && res_.data && res_.data.translations) {
+
+				if(typeof(callback) === "function") {
+					callback(res_)
+				} else {
+					console.dir(res_.data.translations);
+				}
 			} else {
-				console.dir(res_.data.translations);
+				console.log("translation failed...")
 			}
 		})
 	}).on('error', function(e){

@@ -45,3 +45,12 @@ io.sockets.on('connection', function(socket){
 server.listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
+
+// [ref] http://stackoverflow.com/questions/7310521/node-js-best-practice-exception-handling
+
+// catch the uncaught errors that weren't wrapped in a domain or try catch statement
+// do not use this in modules, but only in applications, as otherwise we could have multiple of these bound
+process.on('uncaughtException', function(err) {
+    // handle the error safely
+    console.log(err);
+});
