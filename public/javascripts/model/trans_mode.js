@@ -13,9 +13,9 @@ var TransMode;
 		, _NONE = 2;
 
 	var _TEMPLATE = [
-		"<input type='radio' name='mode' value='en2ja'>E-to-J ",
-		"<input type='radio' name='mode' value='ja2en'>J-to-E ",
-		"<input type='radio' name='mode' value='none'>not translate"
+		"<label><input type='radio' name='mode' value='en2ja'>E-to-J</label> ",
+		"<label><input type='radio' name='mode' value='ja2en'>J-to-E</label> ",
+		"<label><input type='radio' name='mode' value='none'>not translate</label>"
 	].join("")
 
 	/** constructor */

@@ -9,38 +9,41 @@ var Talks = function(selector){
 
 	this.translator = new Translator();
 }
-Talks.prototype.add = function(name, orig, auto, mode /* en2ja, ja2en, null */){
+Talks.prototype.add = function(obj, mode){
+	/** obj = {id: , ja: , en:, fix:} */
+
 	var self = this;
 	// [todo] validate name and text
-	var add_ = function(name, text) {
-		var html_ = new Talk(name, text, null).render();
-		self.jqobj.find("dl").prepend(html_);
-		// var scrollHeight_ = self.jqobj[0].scrollHeight;
+	var add_ = function(obj) {
+		var html_ = new Talk(obj).render();
 
-		// self.jqobj[0].scrollTop = scrollHeight_;
+		if($("#"+obj.id).length === 0){
+			self.jqobj.find("dl").prepend("<p id='"+obj.id+"'></p>");
+		}
+		$("#"+obj.id).html(html_)
 	};
 
-	add_(name, orig)
+	add_(obj)
+	if(mode !== "emitted") {
+		$(self).trigger('talk', [obj])
+	}
 
-	if(!!auto) {
-		// in case received via socket.io
-		add_(name, auto)
-	} else {
-		switch(mode){
-		case "en2ja":
-			this.translator.en2ja(orig, function(res){
-				add_(name, res)
-				$(self).trigger('translated', [name, orig, res])
-			});
-			break;
-		case "ja2en":
-			this.translator.ja2en(orig, function(res){
-				add_(name, res)
-				$(self).trigger('translated', [name, orig, res])
-			});
-			break;
-		default:
-			break;
-		}
+	switch(mode){
+	case "en2ja":
+		this.translator.en2ja(obj.en, function(res){
+			obj.ja = res;
+			add_(obj)
+			$(self).trigger('talk', [obj])
+		});
+		break;
+	case "ja2en":
+		this.translator.ja2en(obj.ja, function(res){
+			obj.en = res;
+			add_(obj);
+			$(self).trigger('talk', [obj])
+		});
+		break;
+	default:
+		break;
 	}
 }
