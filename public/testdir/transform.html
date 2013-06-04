@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+	<style>
+		body{
+			border: 1px dashed gray;
+
+			-webkit-transform: rotate(270deg);
+			-webkit-transform-origin: 0 0;
+		}
+		h1 { font-size: 8em;}
+
+		.box{
+			border: 1px solid #000;
+			background: blue
+		}
+	</style>
+</head>
+<body>
+	<h1>Hello, World!!</h1>
+	<button>append</button>
+	<output>
+	<div class="box">hogehoge</div>
+	</output>
+
+	<script>
+	var iw = window.innerWidth, ih = window.innerHeight;
+
+	var bodyElem = document.querySelector("body");
+	bodyElem.style.marginTop = ih+"px"
+	bodyElem.style.width = ih+"px"
+
+	document.querySelector("button").addEventListener('click', function(){
+		document.querySelector("output").innerHTML += "<div class='box'>hoge</div>"
+	}, false);
+	</script>
+</body>
+</html>
