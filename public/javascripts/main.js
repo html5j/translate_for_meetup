@@ -47,4 +47,6 @@ $(function(){
 	socket.on('talk', function(data){
 		talks.add(data, "emitted")
 	})
+
+	RotateBody.do();
 });

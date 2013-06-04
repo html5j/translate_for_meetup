@@ -5,7 +5,7 @@
 
 var Talks = function(selector){
 	this.jqobj = $(selector)
-	this.jqobj.append("<dl></dl>")
+	this.jqobj.html("<dl></dl>")
 
 	this.translator = new Translator();
 }

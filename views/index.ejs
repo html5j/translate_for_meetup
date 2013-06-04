@@ -6,7 +6,7 @@
     <link rel="stylesheet/less" type="text/css" href="/stylesheets/style.less" />
     <script type="text/javascript">
       (function(){
-        if ( !!location.hash ) {
+        if ( !!location.hash && location.hash !== "#90" && location.hash !=="#270") {
           document.write('<link rel="stylesheet/less" type="text/css" href="/stylesheets/input.less" />');
         } else {
           document.write('<link rel="stylesheet/less" type="text/css" href="/stylesheets/output.less" />');
@@ -21,6 +21,7 @@
     <script src="/javascripts/model/translator.js"></script>
     <script src="/javascripts/model/talks.js"></script>
     <script src="/javascripts/model/talk.js"></script>
+    <script src="/javascripts/model/rotate_body.js"></script>
 
     <script src="/javascripts/main.js"></script>
   </head>
@@ -30,8 +31,10 @@
     </header>
   
     <div class="main">
-
-      <div class="log"></div>
+      <hr>
+      <div class="log">
+        ...
+      </div>
       
       <!-- <div id="111111">
         <div class="ja">あああ</div>
