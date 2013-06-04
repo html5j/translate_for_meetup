@@ -7,7 +7,9 @@ var Talks = function(selector){
 	this.jqobj = $(selector)
 	this.jqobj.html("<dl></dl>")
 
-	this.translator = new Translator();
+	if(!!window.Translator) {
+		this.translator = new Translator();
+	}
 }
 Talks.prototype.add = function(obj, mode){
 	/** obj = {id: , ja: , en:, fix:} */
@@ -28,7 +30,7 @@ Talks.prototype.add = function(obj, mode){
 		$(self).trigger('talk', [obj])
 	}
 
-	switch(mode){
+	if(!!this.translator) switch(mode){
 	case "en2ja":
 		this.translator.en2ja(obj.en, function(res){
 			obj.ja = res;

@@ -5,16 +5,14 @@
 
 var express = require('express')
   , routes = require('./routes')
-  , translate = require('./routes/translate')
   , path = require('path')
 
 var app = express()
   , server = require('http').createServer(app)
   , io = require('socket.io').listen(server)
-  , http = require('http')
 
 app.configure(function(){
-  app.set('port', process.env.PORT || 3000);
+  app.set('port', process.env.PORT || 3001);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'ejs');
   app.use(express.favicon());
@@ -30,32 +28,15 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
-app.get('/', routes.index);
-app.get('/translate/en2ja/:q', translate.en2ja)
-app.get('/translate/ja2en/:q', translate.ja2en)
-
-/** settings below should be changed, when read only server has deployed. */
-var options = {
-  hostname: "localhost",
-  port: 3001,
-  path: "/talk",
-  method: 'POST',
-  headers: {
-    "content-type": "application/json"
-  }
-}
+app.get('/', routes.readonly);
+app.post('/talk', function(req, res){
+  console.dir(req.body)
+  io.sockets.emit('talk', req.body)
+  res.send("")
+})
 
 
 io.sockets.on('connection', function(socket){
-  socket.on('talk', function(data){
-    console.log(data)
-    // options.body = data;
-    var req_ = http.request(options, function(res){})
-    req_.write(JSON.stringify(data));
-    req_.end()
-
-    socket.broadcast.emit('talk', data);
-  })
 })
 
 server.listen(app.get('port'), function(){
