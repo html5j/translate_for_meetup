@@ -2,8 +2,10 @@
  * Talk
  */
 
-var Talk = function(name, en, ja){
-	this.name = name; this.en = en; this.ja = ja;
+var Talk = function(name, text, mode){
+	// [todo] 英語とか日本語とか自動翻訳結果とかをmodeで指定して、rederingの結果に
+	// に反映させるようにするかもしれない
+	this.name = name; this.text = text; this.mode = mode;
 	return  this.render();
 }
 
@@ -11,10 +13,9 @@ Talk.prototype.render = function(){
 	var template_ = [
 		"<dt>${name}</dt>",
 		"<dd>",
-		"<div class='en'><span>English:</span><span class='text'>${en}</span></div>",
-		"<div class='ja'><span>Japanese:</span><span class='text'>${ja}</span></div>",
+		"<span class='mode'></span><span class='text'>${text}</span></div>",
 		"</dd>"
 	].join("")
-	return template_.replace("${name}", this.name).replace("${en}", this.en).replace("${ja}", this.ja)
+	return template_.replace("${name}", this.name).replace("${text}", this.text)
 }
 

@@ -17,11 +17,11 @@ $(function(){
 			}
 		})
 
-	$(talks).on("translated", function(e, name, en, ja){
-		socket.emit('talk', {name: name, en: en, ja: ja})
+	$(talks).on("translated", function(e, name, orig, auto){
+		socket.emit('talk', {name: name, orig: orig, auto: auto})
 	})
 
 	socket.on('talk', function(data){
-		talks.add(data.name, data.en, data.ja)
+		talks.add(data.name, data.orig, data.auto)
 	})
 });
