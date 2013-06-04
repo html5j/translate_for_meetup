@@ -1,8 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
-    <link rel='stylesheet/less' type="text/css" href='/stylesheets/style.less' />
+    <meta charset="UTF-8">
+    <title>翻訳システム</title>
+    <link rel="stylesheet/less" type="text/css" href="/stylesheets/style.less" />
+    <script type="text/javascript">
+      (function(){
+        if ( !!location.hash ) {
+          document.write('<link rel="stylesheet/less" type="text/css" href="/stylesheets/input.less" />');
+        } else {
+          document.write('<link rel="stylesheet/less" type="text/css" href="/stylesheets/output.less" />');
+        }
+      })();
+    </script>
     <script src="/javascripts/less-1.3.3.min.js"></script>
     <script src="/javascripts/jquery-1.9.1.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
@@ -14,15 +24,56 @@
     <script src="/javascripts/main.js"></script>
   </head>
   <body>
+    <header>
+      <h1>翻訳システム</h1>
+    </header>
+  
     <div class="main">
-      <header>
-        <h1><%= title %></h1>
-        <p>Welcome to <%= title %></p>
-      </header>
 
       <div class="log">
-      </div>
+        
 
+        <dl>
+          <dt>test</dt>
+          <dd>
+            <p class="ja">あああ</p>
+            <p class="en">AAAA</p>
+            <p><time>2013/6/4 18:16:37</time></p>
+          </dd>
+          <dt>test</dt>
+          <dd>
+            <p class="ja">ああああああああああああああああああああああああああああああああああああああああああああああああああああああ</p>
+            <p class="en">AAAA</p>
+            <p><time>2013/6/4 18:16:37</time></p>
+          </dd>
+          <dt>bbbbbbbbbbbbb</dt>
+          <dd>
+            <p class="ja"></p>
+            <p class="en">AAAAAAAAAAAAAAAAAAAA AAAA AAAA AAAA AAAAAAAAAAAAAAAAAAAA vAAAA　AAAAAAAA AAAAAAAAAAAAAAAAAAAA</p>
+            <p><time>2013/6/4 18:16:37</time></p>
+          </dd>
+          <dt>bbbbbbbbbbbbb</dt>
+          <dd>
+            <p class="ja">ああああ</p>
+            <p class="en"></p>
+            <p><time>2013/6/4 18:16:37</time></p>
+          </dd>
+          <dt>bbbbbbbbbbbbb</dt>
+          <dd>
+            <p class="fix">s/test/テスト/</p>
+            <p><time>2013/6/4 18:16:37</time></p>
+          </dd>
+      </dl>
+
+      </div>
+      
+      <!-- <div id="111111">
+        <div class="ja">あああ</div>
+        <div class="en">AAAA</div>
+      </div>
+      <div>
+        <div class="fix"></div>
+      </div> -->
 
       <form>
         <div class="input-name">
