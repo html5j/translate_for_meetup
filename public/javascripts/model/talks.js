@@ -9,7 +9,7 @@ var Talks = function(selector){
 
 	this.translator = new Translator();
 }
-Talks.prototype.add = function(name, orig, auto){
+Talks.prototype.add = function(name, orig, auto, mode /* en2ja, ja2en, null */){
 	var self = this;
 	// [todo] validate name and text
 	var add_ = function(name, text) {
@@ -23,11 +23,24 @@ Talks.prototype.add = function(name, orig, auto){
 	add_(name, orig)
 
 	if(!!auto) {
+		// in case received via socket.io
 		add_(name, auto)
 	} else {
-		this.translator.en2ja(orig, function(res){
-			add_(name, res)
-			$(self).trigger('translated', [name, orig, res])
-		});
+		switch(mode){
+		case "en2ja":
+			this.translator.en2ja(orig, function(res){
+				add_(name, res)
+				$(self).trigger('translated', [name, orig, res])
+			});
+			break;
+		case "ja2en":
+			this.translator.ja2en(orig, function(res){
+				add_(name, res)
+				$(self).trigger('translated', [name, orig, res])
+			});
+			break;
+		default:
+			break;
+		}
 	}
 }
