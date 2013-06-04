@@ -13,9 +13,15 @@ Talk.prototype.render = function(){
 	var template_ = [
 		"<dt>${name}</dt>",
 		"<dd>",
-		"<span class='mode'></span><span class='text'>${text}</span></div>",
+		"<p><span class='mode'></span><span class='text'>${text}</span></p>",
+		"<p><time>${timestamp}</time></p>",
 		"</dd>"
 	].join("")
-	return template_.replace("${name}", this.name).replace("${text}", this.text)
+
+	var timestamp_ = new Date().toLocaleString(); 
+	return template_
+		.replace("${name}", this.name)
+		.replace("${text}", this.text)
+		.replace("${timestamp}", timestamp_)
 }
 

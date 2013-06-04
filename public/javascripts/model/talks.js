@@ -14,10 +14,10 @@ Talks.prototype.add = function(name, orig, auto){
 	// [todo] validate name and text
 	var add_ = function(name, text) {
 		var html_ = new Talk(name, text, null).render();
-		self.jqobj.find("dl").append(html_);
-		var scrollHeight_ = self.jqobj[0].scrollHeight;
+		self.jqobj.find("dl").prepend(html_);
+		// var scrollHeight_ = self.jqobj[0].scrollHeight;
 
-		self.jqobj[0].scrollTop = scrollHeight_;
+		// self.jqobj[0].scrollTop = scrollHeight_;
 	};
 
 	add_(name, orig)

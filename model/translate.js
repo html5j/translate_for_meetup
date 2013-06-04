@@ -7,7 +7,7 @@ var Translate
 
 
 Translate = function(apikey){
-	this.apikey = "error" || apikey || "AIzaSyDh1c1seR6aPY8eID6LYkWsbeykSZA--J8";
+	this.apikey = apikey || "AIzaSyDh1c1seR6aPY8eID6LYkWsbeykSZA--J8";
 	this.url = [
 		"https://www.googleapis.com/language/translate/v2?key=",
 		this.apikey,
