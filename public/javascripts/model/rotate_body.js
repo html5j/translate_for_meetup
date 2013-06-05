@@ -19,6 +19,7 @@ var RotateBody = {};
 			this.do270_();
 			break;
 		default:
+			RotateBody.clear_();
 			break;
 		}
 	}
@@ -37,6 +38,15 @@ var RotateBody = {};
 			"-webkit-transform-origin": "0 0",
 			"marginTop": ih + "px",
 			"width": ih + "px"
+		})
+	}
+
+	RotateBody.clear_ = function(){
+		$("body").css({
+			"-webkit-transform": "none",
+			"-webkit-transform-origin": "50% 50%",
+			"marginTop": "inherit",
+			"width": "auto"
 		})
 	}
 

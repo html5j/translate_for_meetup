@@ -1,23 +1,33 @@
 @charset 'utf-8';
 
+/* var */
+@text-color-ja: gold;
+@text-color-en: white;
+@name-color: lightskyblue;
+@name-sufix: ' >';
+
+/* reset */
 p {
 	padding: 0;
 	margin: 0;
 }
-
-html, body {
+body {
 	background: #000;
 	color: white;
 	font-family: 'Lucida Grande', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo', 'メイリオ', 'sans-serif';
 	margin: 0;
+	padding: 1em;
 }
-body {
-	padding: 0.5em;
+
+small {
+	display: block;
+	margin-bottom: 1em;
 }
 
 .log {
 	font-size: 3em;
 	line-height: 1.8;
+	letter-spacing: 0.15em;
 	dl {
 		overflow: hidden;
 		margin: 0;
@@ -31,9 +41,9 @@ body {
 			border-top: solid 2px white;
 			-webkit-box-sizing: border-box;
 			box-sizing: border-box;
-			color: lightskyblue;
+			color: @name-color;
 			&:after {
-				content: ' > ';
+				content: @name-sufix;
 			}
 		}
 		dd {
@@ -53,11 +63,11 @@ body {
 				color: #ddd;
 			}
 			.ja {
-				color: gold;
+				color: @text-color-ja;
 			}
-		}
-		dd&:first-child {
-			border-bottom: dotted 2px white;
+			.en {
+				color: @text-color-en;
+			}
 		}
 	}
 }
@@ -77,5 +87,47 @@ form {
 		width: 100%;
 		height: 8em;
 		font-size: 1em;
+	}
+}
+
+/* view mode */
+header, form {
+	display: none;
+}
+
+/* input mode */
+.input {
+	header, form {
+		display: block;
+	}
+	.log {
+		font-size: 1.5em;
+		overflow: scroll;
+		max-height: 600px;
+	}
+}
+
+@media only screen and (max-width: 481px) {
+	.log {
+		font-size: 1em;
+		letter-spacing: 0;
+		dl {
+			dt {
+				float: none;
+				width: 100%;
+				padding-bottom: 0;
+			}
+			dd {
+				border-top-width: 0;
+				padding-left: 0.2em;
+				width: 100%;
+				float: none;
+				time {
+					position: static;
+					display: block;
+					text-align: right;
+				}
+			}
+		}
 	}
 }

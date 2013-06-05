@@ -2,17 +2,9 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>翻訳システム</title>
     <link rel="stylesheet/less" type="text/css" href="/stylesheets/style.less" />
-    <script type="text/javascript">
-      (function(){
-        if ( !!location.hash && location.hash !== "#90" && location.hash !=="#270") {
-          document.write('<link rel="stylesheet/less" type="text/css" href="/stylesheets/input.less" />');
-        } else {
-          document.write('<link rel="stylesheet/less" type="text/css" href="/stylesheets/output.less" />');
-        }
-      })();
-    </script>
     <script src="/javascripts/less-1.3.3.min.js"></script>
     <script src="/javascripts/jquery-1.9.1.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
@@ -29,25 +21,15 @@
     <header>
       <h1>翻訳システム</h1>
     </header>
-  
     <div class="main">
-      <p>
-      &copy; html5j, 2013. ( Powered by Google Translate api. Server systems are hosted by NTT Communications. )
-      </p>
-      <p>
-      Today's fascilities are sponsored by NTT Advanced Technology, New Phoria, DeNA.
-      </p>
-      <hr>
+      <small>
+        <p>&copy; html5j, 2013. ( Powered by Google Translate api. Server systems are hosted by NTT Communications. )</p>
+        <p>Today's fascilities are sponsored by NTT Advanced Technology, New Phoria, DeNA.</p>
+      </small>
+
       <div class="log">
+        <!-- append translate result -->
       </div>
-      
-      <!-- <div id="111111">
-        <div class="ja">あああ</div>
-        <div class="en">AAAA</div>
-      </div>
-      <div>
-        <div class="fix"></div>
-      </div> -->
 
       <form>
         <div id="translation-mode"></div>
