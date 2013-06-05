@@ -16,6 +16,12 @@ $(function(){
 	    return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4() +S4());
 	};
 
+	// cancel default behavior of text input.
+	$(".main form input[name=name]").on('submit', function(ev){
+		ev.preventDefault();
+	});
+
+	// send talk when Enter has pressed.
 	$(".main form textarea")
 		.on("keydown", function(ev){
 			if(ev.keyCode === 13 ) { //&& ev.shiftKey) {
