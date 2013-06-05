@@ -46,6 +46,7 @@ var options = {
   path: "/talk",
   method: 'POST',
   headers: {
+    "connection": "close",
     "content-type": "application/json"
   }
 }
