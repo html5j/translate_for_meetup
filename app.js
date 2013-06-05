@@ -41,8 +41,8 @@ app.get('/translate/ja2en/:q', translate.ja2en)
 
 /** settings below should be changed, when read only server has deployed. */
 var options = {
-  hostname: "localhost",
-  port: 3001,
+  hostname: "153.128.36.23",
+  port: 80,
   path: "/talk",
   method: 'POST',
   headers: {
