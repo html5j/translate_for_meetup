@@ -54,5 +54,16 @@ $(function(){
 		talks.add(data, "emitted")
 	})
 
-	RotateBody.do();
+	$(window).on('hashchange', modeChange);
+	modeChange();
+
+  function modeChange() {
+  	RotateBody.do();
+    if ( !!location.hash && location.hash !== '#90' && location.hash !== '#270' ) {
+      document.body.classList.add('input');
+    } else {
+      document.body.classList.remove('input');
+    }
+  }
+
 });
