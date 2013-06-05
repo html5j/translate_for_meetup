@@ -4,8 +4,15 @@
 
 
 var Talks = function(selector){
-	this.jqobj = $(selector)
-	this.jqobj.html("<dl></dl>")
+	this.MAX_COUNT = 100;
+	this.jqobj = $(selector);
+
+	// restore from localStorage
+	if ( !!localStorage.cache ) {
+		this.jqobj.html(localStorage.cache);
+	} else {
+		this.jqobj.html("<dl></dl>");
+	}
 
 	if(!!window.Translator) {
 		this.translator = new Translator();
@@ -18,11 +25,25 @@ Talks.prototype.add = function(obj, mode){
 	// [todo] validate name and text
 	var add_ = function(obj) {
 		var html_ = new Talk(obj).render();
+		var output = self.jqobj;
+		var item = $("#"+obj.id);
 
-		if($("#"+obj.id).length === 0){
-			self.jqobj.find("dl").prepend("<p id='"+obj.id+"'></p>");
+		if( item.length === 0 ){
+			item = $("<div id='"+obj.id+"'></div>").html(html_);
+			output.find("dl").prepend(item);
+		} else {
+			item.html(html_);
 		}
-		$("#"+obj.id).html(html_)
+
+		// limit item
+		var items = output.find("dl>div"),
+				count = items.length;
+		if ( count > self.MAX_COUNT ) {
+			items.slice(self.MAX_COUNT).remove();
+		}
+
+		// save to localStorage
+		localStorage.cache = output.html();
 	};
 
 	add_(obj)
