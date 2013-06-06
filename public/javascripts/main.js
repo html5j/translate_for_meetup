@@ -3,11 +3,20 @@
  */
 
 $(function(){
-	var talks = new Talks(".log")
-		, trans_mode = new TransMode()
-		, socket = io.connect("http://"+location.host)
+	var modeChange = function() {
+  	RotateBody.do();
+    if ( !!location.hash && location.hash !== '#90' && location.hash !== '#270' ) {
+      document.body.classList.add('input');
+    } else {
+      document.body.classList.remove('input');
+    }
+  };
+  modeChange();
 
-	trans_mode.render("#translation-mode")
+	var talks = new Talks(".log"),
+			trans_mode = new TransMode(),
+			socket = io.connect("http://"+location.host);
+	trans_mode.render("#translation-mode");
 
 	var uuid_ = function(){
 	    var S4 = function() {
@@ -28,43 +37,31 @@ $(function(){
 				var text_ = $(this).val().replace(/</g, "&lt;").replace(/>/g, "&gt;");
 				var name_ = $("form input[name=name]").val();
 				var mode_ = trans_mode.get();
-				name_ = !!name_ ? name_ : "???"
+				name_ = !!name_ ? name_ : "???";
 
 				switch(mode_){
-				case "en2ja":
-					talks.add({id: uuid_(), name: name_, en: text_, ja: null, fix: null}, mode_);
-					break;
-				case "ja2en":
-					talks.add({id: uuid_(), name: name_, en: null, ja: text_, fix: null}, mode_);
-					break;
-				case "none":
-					talks.add({id: uuid_(), name: name_, en: null, ja: null, fix: text_}, mode_);
-					break;
+					case "en2ja":
+						talks.add({id: uuid_(), name: name_, en: text_, ja: null, fix: null}, mode_);
+						break;
+					case "ja2en":
+						talks.add({id: uuid_(), name: name_, en: null, ja: text_, fix: null}, mode_);
+						break;
+					case "none":
+						talks.add({id: uuid_(), name: name_, en: null, ja: null, fix: text_}, mode_);
+						break;
 				}
 				$(this).val("");
 				ev.preventDefault();
 			}
-		})
+		});
 
 	$(talks).on("talk", function(e, obj){
-		socket.emit("talk", obj)
-	})
+		socket.emit("talk", obj);
+	});
 
 	socket.on('talk', function(data){
-		talks.add(data, "emitted")
-	})
+		talks.add(data, "emitted");
+	});
 
 	$(window).on('hashchange', modeChange);
-	modeChange();
-
-
-  function modeChange() {
-  	RotateBody.do();
-    if ( !!location.hash && location.hash !== '#90' && location.hash !== '#270' ) {
-      document.body.classList.add('input');
-    } else {
-      document.body.classList.remove('input');
-    }
-  }
-
 });
