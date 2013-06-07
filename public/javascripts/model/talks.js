@@ -2,7 +2,6 @@
  * Talks
  */
 
-
 var Talks = function(selector){
 	this.MAX_COUNT = 100;
 	this.jqobj = $(selector);
@@ -14,15 +13,20 @@ var Talks = function(selector){
 		this.jqobj.html("<dl></dl>");
 	}
 	// scroll to bottom
-	if ( $('body').hasClass('input') ) {
-		this.jqobj.animate({
-			'scrollTop': this.jqobj[0].scrollHeight
+	this._scrollToBottom = function() {
+		var content;
+		if ( $('body').hasClass('input') ) {
+			content = this.jqobj;
+		} else {
+			content = $('body');
+		}
+
+		content.animate({
+			'scrollTop': content[0].scrollHeight,
+			'scrollLeft': content[0].scrollWidth
 		});
-	} else {
-		$('body').animate({
-			'scrollTop': $('body')[0].scrollHeight
-		});
-	}
+	};
+	// this._scrollToBottom();
 
 	if(!!window.Translator) {
 		this.translator = new Translator();
@@ -41,20 +45,12 @@ Talks.prototype.add = function(obj, mode){
 		if( item.length === 0 ){
 			item = $('<div id=' + obj.id + ' class=""></div>').html(html_);
 			item.addClass('animate').hide();
-			output.find("dl").append(item);
+			output.find("dl").prepend(item);
 			item.show(0, function(){
 				item.removeClass('animate');
 
 				// scroll to bottom
-				if ( $('body').hasClass('input') ) {
-					output.animate({
-						'scrollTop': output[0].scrollHeight
-					});
-				} else {
-					$('body').animate({
-						'scrollTop': $('body')[0].scrollHeight
-					});
-				}
+				// self._scrollToBottom();
 			});
 		} else {
 			item.html(html_);
@@ -64,7 +60,7 @@ Talks.prototype.add = function(obj, mode){
 		var items = output.find("dl>div"),
 				count = items.length;
 		if ( count > self.MAX_COUNT ) {
-			items.slice(0, count-self.MAX_COUNT).remove();
+			items.slice(self.MAX_COUNT).remove();
 		}
 
 		// save to localStorage
