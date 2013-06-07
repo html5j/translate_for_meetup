@@ -36,6 +36,7 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
+app.get('/bot', routes.bot);
 app.get('/translate/en2ja/:q', translate.en2ja)
 app.get('/translate/ja2en/:q', translate.ja2en)
 
