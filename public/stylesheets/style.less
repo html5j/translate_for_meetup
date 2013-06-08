@@ -8,172 +8,172 @@
 
 /* reset */
 p {
-	padding: 0;
-	margin: 0;
+  padding: 0;
+  margin: 0;
 }
 html, body{
-	 height: 100%;
+   height: 100%;
 }
 body {
-	background: #000;
-	color: white;
-	font-family: 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo', 'メイリオ', 'sans-serif';
-	margin: 0;
-	padding: 1em;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
+  background: #000;
+  color: white;
+  font-family: 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo', 'メイリオ', 'sans-serif';
+  margin: 0;
+  padding: 1em;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 
-	a {
-		color: #ccffff;	
-	}
+  a {
+    color: #ccffff;
+  }
 }
 
 small {
-	display: block;
-	span {
-		display: block;
-	}
-	margin-bottom: 1em;
+  display: block;
+  span {
+    display: block;
+  }
+  margin-bottom: 1em;
 }
 
 .log {
-	/* height: 100%; */
-	font-size: 3em;
-	line-height: 1.8;
-	letter-spacing: 0.15em;
-	overflow: hidden;
-	dl {
-		overflow: hidden;
-		margin: 0;
-		&>div {
-			overflow: hidden;
-			-webkit-transition: background 0.5s ease;
-			-moz-transition: background 0.5s ease;
-			-o-transition: background 0.5s ease;
-			-ms-transition: background 0.5s ease;
-			transition: background 0.5s ease;
-			background: #000;
-		}
-		&>div.animate {
-			background: antiquewhite;
-		}
-		&>div:last-child {
-			margin-bottom: 4em;
-		}
-		dt {
-			float: left;
-			width: 20%;
-			white-space: nowrap;
-			overflow: hidden;
-			text-overflow: ellipsis;
-			padding: 0.2em 0 0.4em 0.2em;
-			border-top: solid 1px gray;
-			-webkit-box-sizing: border-box;
-			box-sizing: border-box;
-			color: @name-color;
-			&:after {
-				content: @name-sufix;
-			}
-		}
-		dd {
-			position: relative;
-			float: left;
-			width: 80%;
-			margin: 0;
-			padding: 0.2em 0 0.4em 0.5em;
-			border-top: solid 1px gray;
-			-webkit-box-sizing: border-box;
-			box-sizing: border-box;
-			time {
-				position: absolute;
-				bottom: 0.4em;
-				right: 0.2em;
-				font-size: 0.5em;
-				color: #ddd;
-			}
-			.ja {
-				color: @text-color-ja;
-			}
-			.en {
-				color: @text-color-en;
-			}
-		}
-	}
+  /* height: 100%; */
+  font-size: 3.5em;
+  line-height: 1.8;
+  letter-spacing: 0.15em;
+  overflow: hidden;
+  dl {
+    overflow: hidden;
+    margin: 0;
+    &>div {
+      overflow: hidden;
+      -webkit-transition: background 0.5s ease;
+      -moz-transition: background 0.5s ease;
+      -o-transition: background 0.5s ease;
+      -ms-transition: background 0.5s ease;
+      transition: background 0.5s ease;
+      background: #000;
+    }
+    &>div.animate {
+      background: antiquewhite;
+    }
+    &>div:last-child {
+      margin-bottom: 4em;
+    }
+    dt {
+      float: left;
+      width: 20%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding: 0.2em 0 0.4em 0.2em;
+      border-top: solid 1px gray;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      color: @name-color;
+      &:after {
+        content: @name-sufix;
+      }
+    }
+    dd {
+      position: relative;
+      float: left;
+      width: 80%;
+      margin: 0;
+      padding: 0.2em 0 0.4em 0.5em;
+      border-top: solid 1px gray;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      time {
+        position: absolute;
+        bottom: 0.4em;
+        right: 0.2em;
+        font-size: 0.5em;
+        color: #ddd;
+      }
+      .ja {
+        color: @text-color-ja;
+      }
+      .en {
+        color: @text-color-en;
+      }
+    }
+  }
 }
 
 form {
-	clear: both;
-	margin-top: 1em;
-	font-size: 1.4em;
-	input[type=text] {
-		width: 20em;
-		font-size: 1em;
-	}
-	textarea {
-		-webkit-box-sizing: border-box;
-		box-sizing: border-box;
-		margin-top: 0.5em;
-		width: 100%;
-		height: 6em;
-		font-size: 1em;
-	}
+  clear: both;
+  margin-top: 1em;
+  font-size: 1.4em;
+  input[type=text] {
+    width: 20em;
+    font-size: 1em;
+  }
+  textarea {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-top: 0.5em;
+    width: 100%;
+    height: 6em;
+    font-size: 1em;
+  }
 }
 
 /* view mode */
 header, form {
-	display: none;
+  display: none;
 }
 
 /* input mode */
 .input {
-	header, form {
-		display: block;
-	}
-	.log {
-		font-size: 1.5em;
-		overflow: scroll;
-		max-height: 500px;
-		dl {
-			&>div:last-child {
-				margin-bottom: 0;
-			}
-		}
-	}
+  header, form {
+    display: block;
+  }
+  .log {
+    font-size: 1.5em;
+    overflow: scroll;
+    max-height: 500px;
+    dl {
+      &>div:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
 }
 
 @media only screen and (max-width: 769px) {
-	.log {
-		font-size: 1em;
-		letter-spacing: 0;
-	}
+  .log {
+    font-size: 1em;
+    letter-spacing: 0;
+  }
 }
 @media only screen and (max-width: 481px) {
-	.main small {
-		font-size: 0.6em;
-		span {
-			display: inline;
-		}
-	}
-	.log {
-		font-size: 1em;
-		letter-spacing: 0;
-		dl {
-			dt {
-				float: none;
-				width: 100%;
-				padding-bottom: 0;
-			}
-			dd {
-				border-top-width: 0;
-				padding-left: 0.2em;
-				width: 100%;
-				float: none;
-				time {
-					position: static;
-					display: block;
-					text-align: right;
-				}
-			}
-		}
-	}
+  .main small {
+    font-size: 0.6em;
+    span {
+      display: inline;
+    }
+  }
+  .log {
+    font-size: 1em;
+    letter-spacing: 0;
+    dl {
+      dt {
+        float: none;
+        width: 100%;
+        padding-bottom: 0;
+      }
+      dd {
+        border-top-width: 0;
+        padding-left: 0.2em;
+        width: 100%;
+        float: none;
+        time {
+          position: static;
+          display: block;
+          text-align: right;
+        }
+      }
+    }
+  }
 }
