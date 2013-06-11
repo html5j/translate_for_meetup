@@ -34,6 +34,8 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.readonly);
+app.get('/archive/:date', routes.archive)
+app.get('/show/:date', routes.show)
 app.post('/talk', function(req, res){
   log.info(JSON.stringify(req.body))
   io.sockets.emit('talk', req.body)

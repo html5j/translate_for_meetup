@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IRC w/ translator log <%= date %></title>
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+      #log .fix {
+      	padding-left: 6px;
+      	border-left: 3px solid purple;
+      }
+      #log .en { 
+      	padding-left: 6px;
+      	border-left: 3px solid orange;
+      }
+      #log .ja { 
+      	padding-left: 6px;
+      	border-left: 3px solid green;
+      }
+      #log .date {
+      	color: gray;
+      	font-size: 0.9em;
+      }
+    </style>
+<link rel="stylesheet" href="/bootstrap/css/bootstrap-responsive.min.css" />
+<script src="/javascripts/jquery-1.9.1.min.js"></script>
+    <script src="/javascripts/show.js"></script>
+</head>
+<body>
+   <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">IRC w/ translator log</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="#">Home</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+    	<header>
+	      <h1><%= meta.title %></h1>
+	      <p class="lead">You can check IRC log w/ auto translator. <br>Event home page is <a href="<%= meta.link %>">here</a></p>
+      	</header>
+      	<section>
+      	<div id="log"></div>
+      	</section>
+      	<footer>
+      		&copy; <a href="http://html5j.org">html5j</a>, 2013. With the collaboration of <a href="http://www.ntt.com">NTT Communications.</a>
+      	</footer>
+
+    </div> <!-- /container -->
+
+    <script>
+    var show = new Show('#log')
+    show.render("<%= date %>");
+    </script>
+
+</body>
+</html>
